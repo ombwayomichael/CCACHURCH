@@ -1,0 +1,67 @@
+{% extends 'church/base.html' %}
+{% load staticfiles %}
+
+    {% block title %}Index{% endblock %}
+
+        {% block body_block %}
+    
+
+         <div class="row ">
+            <div class="col-xs-12 col-sm-9 ">
+              <div class="panel panel-header">
+            <div class="panel-heading">
+                    <h3 class="panel-title">Here is a list our sermons and articles. Just click on the sermon title  to read the sermon text</h3>
+            </div>
+    </div>
+    <table class="table">
+    <caption>Sermons and Articles.<font color="red"> You can submit your articles to our admin through email(ccanairobi@gmail.com) for publishing after moderation </caption>
+    <thead>
+<tr>
+<th>Date Posted</th>
+<th>Sermon Title</th>
+<th>Author</th>
+</tr>
+</thead>
+<tbody>
+    {% for sermon in sermons %}
+<tr>
+<td> <font color="green">{{ sermon.dateposted|date:"N d, y" }}</font></td>
+<td><a href="/church/sermon/{{ sermon.slug }}">{{ sermon.topic }}</td>
+<td><font color="green">{{ sermon.author }}</font></td>
+</tr>   
+{% endfor %}
+</tbody>
+</table>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if sermons.has_previous %}
+            <a href="?page={{ sermons.previous_page_number }}">Previous Page</a>
+        {% endif %}
+      
+        <span class="current">
+            Page {{ sermons.number }} of {{ sermons.paginator.num_pages }}
+        </span>
+      
+        {% if sermons.has_next %}
+            <a href="?page={{ sermons.next_page_number }}">Next Page</a>
+        {% endif %}
+        
+    </span>
+</div>
+</div>
+<div class="col-xs-12 col-sm-3 placeholder">
+               <div class="panel panel-header">
+    <div class="panel-heading">
+            <h3 class="panel-title">Motivational Quotes</h3>
+    </div>
+</div>
+
+
+              
+                    Turing later traveled to Bletchley Park where he joined the cryptography team . The team was trying to break the ciphers 
+                    created by the Enigma machine, which the Nazis use to provide security for their wireless messages.
+                
+
+            </div>
+{% endblock %}

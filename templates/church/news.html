@@ -1,0 +1,14 @@
+{% extends 'church/base.html' %}
+{% load staticfiles %}
+{% block body_block %}
+<div class="media">
+<a class="pull-left" href="#">
+<img src="{{ MEDIA_URL }}{{news.image}}" width="150x" height="150px" /><br>
+</a>
+<div class="media-body">
+     <font color="green"><h4 class="media-heading">{{ news.title }}</h4></font>
+ 
+{{ news.text }}
+</div>
+</div>
+{% endblock %}

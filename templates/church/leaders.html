@@ -1,0 +1,35 @@
+{% extends 'church/base.html' %}
+{% load staticfiles %}
+{% block body_block %}
+
+<div class="content">
+    <table class="table">
+    <caption>CCA-Johera Nairobi Diocese Leaders </caption>
+    <thead class="panel-header">
+<tr>
+<th>image</th>
+<th>Position</th>
+<th>Name</th>
+<th>Email</th>
+<th>Message</th>
+</tr>
+</thead>
+<tbody>
+    <span>
+   {% for profile in profiles %}
+       <tr>
+<td> <img src="{{ MEDIA_URL }}{{profile.picture}}" width="150x" height="150px" class="img-circle" /></td>
+<td><font color="green">{{ profile.position }}</td>
+<td>{{profile.lastname }} {{profile.firstname }}</td>
+<td>{{ profile.email }}</td>
+<td>{{ profile.message }}</td></font>
+</tr>   
+{% endfor %}
+</tbody>
+</table>
+      
+       
+    </span>
+</div>
+
+{% endblock %}

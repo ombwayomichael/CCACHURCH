@@ -1,0 +1,16 @@
+from django.conf.urls import patterns, url
+from church import views
+urlpatterns=patterns('church.views',
+        url(r'^$','index', name='index'),
+        url(r'^sermons/$', 'sermon', name='sermons'),
+        url(r'^sermon/(?P<slug>[-\w]+)/$', 'sermontext', name='sermon'),
+        url(r'^social/(?P<slug>[-\w]+)/$', 'gallery', name='gallery'),
+        url(r'^new/(?P<slug>[-\w]+)/$', 'new', name='new'),
+        url(r'^event/(?P<slug>[-\w]+)/$', 'event', name='event'),
+        #url(r'^sermon/(?P<slug>[-\w]+)$', 'sermontext',name='sermon'),
+        url(r'^ministry/(?P<slug>[-\w]+)/$', 'ministry', name='ministry'),
+        url(r'^organization/$','organization', name='organization'),
+        #url(r'^list/$','main', name='list'),
+        url(r'^leaders/$','leaders', name='leaders'),
+        url(r'^sermondetails/$','organization', name='sermondetails'),
+)

@@ -1,0 +1,88 @@
+{% extends 'church/base.html' %}
+{% load staticfiles %}
+
+    {% block title %}Index{% endblock %}
+
+        {% block body_block %}
+    
+
+         <div class="row ">
+            <div class="col-xs-12 col-sm-4 ">
+               <div class="panel panel-header">
+    <div class="panel-heading">
+            <h3 class="panel-title">Brief Information about the church</h3>
+    </div>
+</div>
+The 2014, historical thriller film, The Imitation Game, directed by  Morten Tyldum, 
+is based on the biography of the world war II hero, Allan Turin, who brings victory to 
+the Allies by inventing a revolutionary machine that would give birth to the computer age. 
+The film portrays some of the Saint Leo  University's core values. The university offers a practical, 
+effective model for life and leadership in a challenging world, 
+a model based on a steadfast moral consciousness that recognizes the dignity,
+ value, and gifts of all people. This paper gives an overview of the film and discusses some of
+  the University's core values portrayed in the film.
+  The film begins with  Alan Turing being interrogated by two policemen 
+   who apparently broke into Turing's home. The storyline switches to Turing's 
+   early life, from how he was bullied  at  a boarding school where he became friends with  Christopher Morcom,
+                  Christopher would later unexpectedly from bovine tuberculosis after 
+                  Turing had confessed his love to her.
+
+            </div>
+            <div class="col-xs-12 col-sm-4 placeholder">
+              <div class="panel panel-header">
+            <div class="panel-heading">
+                    <h3 class="panel-title">Order of our Next  Services</h3>
+            </div>
+    </div>
+      {% if services %}
+
+{% for service in services %}
+<p> <h4><b><u>Service: </b><font color="green">{{ service.service }}</font></u></h4>
+<b>Date/Time: </b> {{ service.servicedate }}</br>
+<b>Topic: </b>{{ service.topic }}<br>
+ <b>Preacher:</b> {{ service.preacher }}<br>
+<b>Programmer: </b> {{ service.programmer }}</p>
+{% endfor %}
+{% endif %}
+                
+                    
+                    
+                
+            </div>
+            <div class="col-xs-12 col-sm-4 ">
+               <div class="panel panel-header">
+    <div class="panel-heading">
+            <h3 class="panel-title">Corporate Social Activities </h3>
+    </div>
+</div>
+{% if socials %}
+
+{% for social in socials %}
+<img  src="{{ MEDIA_URL }}{{ social.siteimage }}" alt="no image" class="img-responsive img-thumbnail">
+<h3>{{ social.activity }} on {{ social.activitydate }} </h3>
+<p>{{ social.activitydescription }}</p>
+<p>
+<a href="/church/social/{{ social.slug }}">Photo Gallery</a>
+{% endfor %}
+{% endif %}
+<div class="pagination">
+    <span class="step-links">
+        {% if socials.has_previous %}
+            <a href="?page={{ socials.previous_page_number }}">Previous Page</a>
+        {% endif %}
+      
+        <span class="current">
+            Page {{ socials.number }} of {{ socials.paginator.num_pages }}
+        </span>
+      
+        {% if socials.has_next %}
+            <a href="?page={{ socials.next_page_number }}">Next Page</a>
+        {% endif %}
+        
+    </span>
+</div>
+                
+
+            </div>
+            </div>
+        {% endblock %}

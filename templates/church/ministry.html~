@@ -1,0 +1,48 @@
+{% extends 'church/base.html' %}
+{% load staticfiles %}
+
+    {% block title %}Index{% endblock %}
+
+        {% block body_block %}
+    
+
+         <div class="row ">
+            <div class="col-xs-12 col-sm-6 placeholder">
+               <div class="panel panel-header">
+    <div class="panel-heading">
+            <h3 class="panel-title">About the {{ ministry_name }}</h3>
+    </div>
+</div>
+                    
+      ministry full details {{ ministry_description}}<br>
+                ministry patron   <font color="green">  {{ ministry_patron}}</font>
+                
+
+            </div>
+            <div class="col-xs-12 col-sm-6 placeholder">
+              <div class="panel panel-header" >
+            <div class="panel-heading"  >
+                    <h3 class="panel-title">{{ ministry_name}} Calender for upcoming Events</h3>
+            </div>
+    </div>
+    {% if calender %}
+  
+    {% for calender in calender %}
+    <font color="green">{{calender.event_date}}</font><br>
+   {{ calender.event}}  at {{calender.venue}}<br> 
+    {{ calender.eventDescription }}<br>
+    {% endfor %}
+
+    {% else %}
+      <strong>There are no categories present.</strong>
+    
+    {% endif %}
+       
+               
+                
+            </div>
+            </div>
+
+
+      
+        {% endblock %}

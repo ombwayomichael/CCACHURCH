@@ -1,0 +1,69 @@
+{% extends 'church/base.html' %}
+{% load staticfiles %}
+
+    {% block title %}Index{% endblock %}
+
+        {% block body_block %}
+    
+
+         <div class="row">
+            <div class="col-xs-12 col-sm-6 ">
+               <div class="panel panel-header">
+    <div class="panel-heading ">
+            <h3 class="panel-title">Our Church Ministries</h3>
+    </div>
+</div>
+{% if ministries %}
+                    <ul class="list-group">
+                        {% for ministry in ministries %}
+                        
+                         <li class="list-group-item">
+                         <font color="green"><ul><h4>{{ministry.title}}</h4></ul></font>
+                         {{ ministry.description}}<br>
+                         <a href="{{ministry.get_absolute_url}}"> Read more</a></li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <strong>There are Ministries present.</strong>
+                {% endif %}
+
+            </div>
+            <div class="col-xs-12 col-sm-6 ">
+              <div class="panel panel-header" >
+            <div class="panel-heading"  >
+                    <h3 class="panel-title">Resources To Download/Guides</h3>
+            </div>
+    </div>
+    {% if resources %}
+   
+    {% for resource in resources %}
+    <p>
+    <img src="{{ MEDIA_URL }}{{resource.resourceimage}}" width="50x" height="50px" />  {{ resource.name}} <a href="{{ resource.resourcefile.url }}">Download/View</a> <br>
+ </p>
+    {% endfor %}
+  
+    {% endif %}
+    <div class="pagination">
+    <span class="step-links">
+        {% if resources.has_previous %}
+            <a href="?page={{ resources.previous_page_number }}">Previous Activity</a>
+        {% endif %}
+      
+        <span class="current">
+            Page {{ resources.number }} of<font color="green"> {{ resources.paginator.num_pages }}</font>
+        </span>
+      
+        {% if resources.has_next %}
+            <a href="?page={{ resources.next_page_number }}">Next Activity</a>
+        {% endif %}
+        
+    </span></font>
+</div>
+                    
+                
+            </div>
+            </div>
+
+
+      
+        {% endblock %}

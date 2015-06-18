@@ -1,0 +1,14 @@
+{% extends 'church/extra_base.html' %}
+{% load staticfiles %}
+{% block body_block %}
+<div class="media">
+<a class="pull-left" href="#">
+ <img src="{{ MEDIA_URL }}{{events.eventImage}}" width="250x" height="250px" />
+</a>
+<div class="media-body">
+     <font color="green"><h4 class="media-heading">{{ events.title }} on {{ events.eventDate}} at {{events.venue}} </h4></font>
+<br>
+{{ events.text }}
+</div>
+</div>
+{% endblock %}

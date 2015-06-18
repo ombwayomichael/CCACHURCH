@@ -1,0 +1,21 @@
+{% extends 'church/extra_base.html' %}
+{% load staticfiles %}
+{% block body_block %}
+
+<div class="content">
+    <p>
+     <font color="green"><h2>   {{ activity_name }} Photo Gallery </h2></font><br>
+        {{ social}}
+    </p>
+    <span>
+   
+       {% for image in images %}
+      
+      <a href="{{ media_url }}"><img src="{{ MEDIA_URL }}{{image.image}}" width="200x" height="200px" /> </a>
+       {% endfor %}
+      
+       
+    </span>
+</div>
+
+{% endblock %}

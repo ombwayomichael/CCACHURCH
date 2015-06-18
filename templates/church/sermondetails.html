@@ -1,0 +1,127 @@
+{% extends 'church/extra_base.html' %}
+{% load staticfiles %}
+{% block body_block %}
+<div class="row">
+            <div class="col-xs-12 col-sm-2 ">
+            {% if sermon.get_previous_by_dateposted %}
+               <div class="panel panel-header">
+    <div class="panel-heading ">
+            <h3 class="panel-title">
+        <a href="{{ sermon.get_previous_sermon.get_absolute_url }}" >Previous Post</a>
+    </h3>
+    </div>
+</div>
+{% else %}
+<div class="panel panel-header">
+    <div class="panel-heading ">
+            <h3 class="panel-title">
+        No more 
+    </h3>
+    </div>
+</div>
+{% endif %}
+</div>
+<div class="col-xs-12 col-sm-8 ">
+               <div class="panel panel-header">
+    <div class="panel-heading ">
+            <h3 class="panel-title"> Topic: {{ sermon.topic }}</h3>
+    </div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-2 ">
+               <div class="panel panel-header">
+    <div class="panel-heading ">
+            <h3 class="panel-title">{% if sermon.get_next_by_dateposted %}
+        <a class="right" href="{{ sermon.get_next_sermon.get_absolute_url }}" >Next Post</a>
+        {% else %}
+        No more posts
+    {% endif %}</h3>
+    </div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-xs-12 col-sm-2 ">
+</div>
+<div class="col-xs-12 col-sm-8 ">
+<div class="content">
+    <p>
+        {{ sermon.details }}
+        
+    </p>
+    <span>
+        Written by <font color="green"> {{ sermon.author }}</font>  on  <font color="green">{{ sermon.dateposted|date:"N d, Y" }} 
+   </font> </span>
+</div>
+
+{% if sermon.sermoncomment_set.all %}
+<hr>
+<h2><font color="green">Comments</font></h2>
+<div class="comments">
+    {% for comment in sermon.sermoncomment_set.all %}
+        <span>
+       <font color="green"><i>     {{ comment.name }} said on {{ comment.created_on }}</i></font>
+        </span>
+        <p>
+            {{ comment.text }}
+        </p>
+    {% endfor %}
+</div>
+{% endif %}
+
+<br />
+
+<h3><font color="green">Add Comment</h3></font>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <table>
+    
+       <font color="green"> {{ form.as_table }}</font>
+    </table>
+    <input type="submit" name="submit" class="button btn-success" value="Submit" />
+</form>
+    
+    </div>
+    <div class="col-xs-12 col-sm-2 ">
+</div>
+</div>
+<div class="row">
+            <div class="col-xs-12 col-sm-2 ">
+               <div class="panel panel-header">
+    <div class="panel-heading ">
+            <h3 class="panel-title">{% if sermon.get_previous_by_dateposted %}
+        <a href="{{ sermon.get_previous_sermon.get_absolute_url }}" >Previous Post</a>
+        {% else %}
+        No more posts
+    {% endif %}</h3>
+    </div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-8 ">
+               <div class="panel panel-header">
+    <div class="panel-heading ">
+            <h3 class="panel-title">Topic: {{ sermon.topic }}</h3>
+    </div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-2 ">
+{% if sermon.get_next_by_dateposted %}
+               <div class="panel panel-header">
+    <div class="panel-heading ">
+            <h3 class="panel-title">
+        <a class="right" href="{{ sermon.get_next_sermon.get_absolute_url }}" >Next Post</a>
+    </h3>
+    </div>
+</div>
+</div>
+{% else %}
+<div class="panel panel-header">
+    <div class="panel-heading ">
+            <h3 class="panel-title">
+        No more 
+    </h3>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
